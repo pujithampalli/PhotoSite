@@ -1,0 +1,25 @@
+<center><br><br><br>
+  <h2>PhotoSite User List</h2>
+<body style="background-color:#E6E6FA">
+There are <%= @users_all.count%> users
+<br>
+<br>
+<table>
+  <tr>
+    <td style="text-align: center">User</td>
+    <td style="text-align: center">First</td>
+    <td style="text-align: center">Last</td>
+
+  </tr>
+  <% @users_all.all.each do |user| %>
+      <tr>
+        <td style="text-align: center"><%= user.id %></td>
+        <td style="text-align: center"><%= link_to user.first_name, {:action=> "index", :controller => "photo", :id =>user.id} %></td>
+        <td style="text-align: center"><%= user.last_name %></td>
+
+      </tr>
+  <% end %>
+</table>
+
+</body>
+</center>

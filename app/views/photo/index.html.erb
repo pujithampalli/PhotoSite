@@ -1,0 +1,31 @@
+<h2>Photos by: <%= @users.first_name %> <%= @users.last_name %></h2>
+<body style="background-color:#E6E6FA">
+<% @photos.each do |photo| %>
+    <div>
+      <%= image_tag photo.file_name %>
+      Posted date:
+      <%= photo.date_time %>
+      <% @comments = photo.comments %>
+      <h3>Comments:</h3>
+      <% if @comments.count == 0 %>
+          No comments yet.
+      <% else %>
+          <% @comments.each do |comment| %>
+              <div>
+                <li>
+                  <%= comment.comment_text %>
+                  --Commented by:
+                  <% @user = User.find(comment.user_id) %>
+                  <%= link_to @user.first_name, {action: "index", :id=>@user.id} %> <%= @user.last_name %>
+                  on
+                  <%= comment.date_time %>
+                </li>
+              </div>
+      <% end %>
+      <% end %>
+    </div>
+    <hr size="2">
+    <br>
+    <br>
+<% end %>
+</body>
